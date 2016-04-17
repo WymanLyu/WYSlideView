@@ -15,10 +15,10 @@
 @interface WYSlideView : UIScrollView
 
 /** 类方法 */
-+ (instancetype)slideViewWithTitleArray:(NSArray<NSString *> *)titleArray itemClickBlock:(void (^)(NSInteger index))block;
++ (instancetype)slideViewWithTitleArray:(NSArray<NSString *> *)titleArray itemClickBlock:(void (^)(NSInteger fromIndex, NSInteger toIndex))block;
 
 /** 类方法 */
-+ (instancetype)slideViewWithItemArray:(NSArray<WYSlideViewItem *> *)titleArray itemClickBlock:(void (^)(NSInteger index))block;
++ (instancetype)slideViewWithItemArray:(NSArray<WYSlideViewItem *> *)titleArray itemClickBlock:(void (^)(NSInteger fromIndex, NSInteger toIndex))block;
 
 /** 文字普通状态的颜色 */
 @property (nonatomic, strong) UIColor *titleNormalColor;
