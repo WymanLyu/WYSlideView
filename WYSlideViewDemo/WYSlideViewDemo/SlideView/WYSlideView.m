@@ -88,7 +88,7 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
         self.sizeToFit = NO;
         self.itemPadding = DEFAUL_ITEMPADDING;
         self.showsHorizontalScrollIndicator = NO;
-        self.canZoom = NO;
+        self.canZoom = YES;
         self.showButtomView = YES;
         self.buttomViewHeight = DEFAUL_BUTTOMVIEWHEIGHT;
         
@@ -278,20 +278,23 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
 
 /** 点击事件 */
 - (void)btnClick:(UIButton *)button {
-    
     // 1.回复选中
     NSInteger from = self.selectedBtn.tag;
     self.selectedBtn.transform = CGAffineTransformIdentity;
     self.selectedBtn.selected = NO;
+    self.selectedBtn.userInteractionEnabled = YES;
     
     // 2.设置选中
     self.selectedBtn = button;
     self.selectedBtn.selected = YES;
+    self.selectedBtn.userInteractionEnabled = NO; // 用此方式过滤重复点击，因为此方法布局时要调用
     WYSlideViewItem *item = _itemArrM[button.tag];
     
     // 3.设置字体形变
     if (self.canZoom) { // 允许选中放大
-        self.selectedBtn.transform = CGAffineTransformMakeScale(1, item.scale); // 此方式在再次重新布局时候会出错
+        [UIView animateWithDuration:0.25f animations:^{
+            self.selectedBtn.transform = CGAffineTransformMakeScale(1, item.scale); // 此方式在再次重新布局时候会出错
+        }];
     }
    
     // 4.设置滚动
@@ -310,7 +313,7 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
     // 5.设置底部条滚动
     if (self.showButtomView) { // 显示底部滑动条
         CGFloat buttomViewX = self.selectedBtn.frame.origin.x;
-        CGFloat buttomViewY = self.selectedBtn.frame.size.height - self.buttomViewHeight;
+        CGFloat buttomViewY = self.frame.size.height - self.buttomViewHeight;
         CGFloat buttomViewW = self.selectedBtn.frame.size.width;
         CGFloat buttomViewH = self.buttomViewHeight;
         if (CGRectEqualToRect(self.buttomView.frame, CGRectZero)) { // 第一次无动画,因为跟新布局时候默认点击了选中按钮
@@ -326,6 +329,7 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
     }
     
     // 5.调用block
+    if (from == button.tag) return; // 避免多次调用block，因为布局时默认要调用此方法
     self.block(from, button.tag);
     
 }

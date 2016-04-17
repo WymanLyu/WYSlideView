@@ -14,6 +14,9 @@
 - (IBAction)isScrollToCenter:(UISwitch *)sender;
 - (IBAction)isShowButtomView:(UISwitch *)sender;
 
+@property (nonatomic, strong) NSMutableArray *arrM;
+@property (nonatomic, weak) UIView *contentView;
+
 @property (nonatomic, weak) WYSlideView *slideView;
 @end
 
@@ -21,16 +24,57 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    // 创建contentView
+    UIView *contentView = [[UIView alloc] init];
+    contentView.frame = CGRectMake(0, 128, [UIScreen mainScreen].bounds.size.width, 400);
+    [contentView setBackgroundColor:[UIColor purpleColor]];
+    self.contentView = contentView;
+    [self.view addSubview:contentView];
+    NSMutableArray *arrM = [NSMutableArray array];
+    self.arrM = arrM;
+    for (int i = 0; i < 10; i++) {
+        UIView *view = [[UIView alloc] init];
+        [view setFrame:contentView.bounds];
+        [view setBackgroundColor:[UIColor colorWithRed:(arc4random()%255 * 1.0f)/255.0 green:(arc4random()%255 * 1.0f)/255.0 blue:(arc4random()%255 * 1.0f)/255.0 alpha:1.0]];
+        [self.arrM addObject:view];
+    }
+    [self.contentView addSubview:self.arrM[0]];
     
 #pragma mark - 根据字符串创建
     
     // 创建view
-    NSArray *strArr = @[@"第一页紫色", @"第二页绿色wy", @"第三页橘色wywy", @"这是第四页黑色wywywy", @"这是第五页红色", @"wy", @"wywy", @"sss"];
+    NSArray *strArr = @[@"第一页紫色", @"第二页绿色wy", @"第三页橘色wywy", @"这是第四页黑色wywywy", @"这是第五页红色", @"wy", @"wywy", @"sss", @"123", @"最后一个"];
     
     WYSlideView *slideView = [WYSlideView slideViewWithTitleArray:strArr itemClickBlock:^(NSInteger fromIndex, NSInteger toIndex) {
         /**** 这里传入模型索引 可以在此转场 ***/
         NSLog(@"from:%zd--to:%zd", fromIndex, toIndex);
+        
+        // 例如：];
+        UIView *toView = self.arrM[toIndex];
+        // 右滑出现则先挪至右边，左滑出现则挪至左边
+        CGRect frame =  toView.frame;
+        frame.origin.x = toIndex > fromIndex ? frame.size.width : - frame.size.width;
+        toView.frame = frame;
+        [self.contentView addSubview:toView];
+         NSLog(@"-==%@", self.contentView.subviews);
+        [UIView animateWithDuration:0.5f animations:^{
+            UIView *fromView = [self.contentView.subviews lastObject];
+            UIView *toView = self.arrM[toIndex];
+            
+            CGRect fromFrame =  fromView.frame;
+            CGRect toFrame =  toView.frame;
+            // 与上对应消失
+            fromFrame.origin.x = toIndex > fromIndex ? - frame.size.width : frame.size.width;
+            toFrame.origin.x = 0;
+            fromView.frame = fromFrame;
+            toView.frame = toFrame;
+        } completion:^(BOOL finished) {
+            [[self.contentView.subviews firstObject] removeFromSuperview];
+            NSLog(@"-==%@", self.contentView.subviews);
+        }];
+
+        
     }];
     
     // 设置frame

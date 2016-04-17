@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hf9-LJ-9ao">
-                                <rect key="frame" x="0.0" y="350" width="594" height="250"/>
+                                <rect key="frame" x="0.0" y="350" width="600" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否自适应：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sB-zA-9bw">
                                         <rect key="frame" x="8" y="8" width="103" height="21"/>
@@ -202,7 +202,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="hf9-LJ-9ao" secondAttribute="trailing" constant="6" id="Y1K-g8-VTC"/>
+                            <constraint firstAttribute="trailing" secondItem="hf9-LJ-9ao" secondAttribute="trailing" id="Y1K-g8-VTC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hf9-LJ-9ao" secondAttribute="bottom" id="g7v-np-h24"/>
                             <constraint firstItem="hf9-LJ-9ao" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kcX-fj-5P1"/>
                         </constraints>
