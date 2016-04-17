@@ -93,6 +93,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+/** 简单使用 */
+- (void)text{
+    /**
+     *  初始化slideView，记得需要设置frame
+     *
+     *  @param fromIndex 上次点击的索引
+     *  @param toIndex   即将点击的索引
+     *
+     *  @return slideView对象
+     */
+    WYSlideView *slideView = [WYSlideView slideViewWithTitleArray:@[@"标题1", @"标题2"] itemClickBlock:^(NSInteger fromIndex, NSInteger toIndex) {
+        // 获取点击的索引，完成转场
+    }];
+    
+    // 创建模型
+    WYSlideViewItem *item1 = [[WYSlideViewItem alloc] init];
+    item1.title = @"标题1";
+    WYSlideViewItem *item2 = [[WYSlideViewItem alloc] init];
+    item2.title = @"标题2";
+    // 根据模型创建slideView
+    WYSlideView *slideView2 = [WYSlideView slideViewWithItemArray:@[item1, item2] itemClickBlock:^(NSInteger fromIndex, NSInteger toIndex) {
+        // 获取点击的索引，完成转场
+    }];
+}
+
+/** 选项 */
 - (IBAction)isAutoSizeToFit:(UISwitch *)sender {
     self.slideView.sizeToFit = sender.isOn;
 }
