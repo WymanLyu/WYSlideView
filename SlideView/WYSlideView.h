@@ -20,6 +20,12 @@
 /** 类方法 */
 + (instancetype)slideViewWithItemArray:(NSArray<WYSlideViewItem *> *)titleArray itemClickBlock:(void (^)(NSInteger index))block;
 
+/** 文字普通状态的颜色 */
+@property (nonatomic, strong) UIColor *titleNormalColor;
+
+/** 文字选中状态的颜色 */
+@property (nonatomic, strong) UIColor *titleSelectedColor;
+
 /** 是否自适应 默认为NO*/
 @property (nonatomic, assign, getter=isSizeToFit) BOOL sizeToFit;
 
