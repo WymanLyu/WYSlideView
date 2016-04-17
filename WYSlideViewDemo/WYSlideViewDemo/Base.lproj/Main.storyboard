@@ -199,12 +199,20 @@
                                     <constraint firstItem="NXk-pp-noo" firstAttribute="top" secondItem="dkc-EL-pPq" secondAttribute="bottom" constant="13" id="zG8-pk-hCo"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-WS-xZY">
+                                <rect key="frame" x="0.0" y="64" width="600" height="286"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cgA-WS-xZY" secondAttribute="trailing" id="18G-Pn-dMd"/>
+                            <constraint firstItem="cgA-WS-xZY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="B3R-Tf-oTg"/>
+                            <constraint firstItem="hf9-LJ-9ao" firstAttribute="top" secondItem="cgA-WS-xZY" secondAttribute="bottom" id="Vp0-WZ-lbK"/>
                             <constraint firstAttribute="trailing" secondItem="hf9-LJ-9ao" secondAttribute="trailing" id="Y1K-g8-VTC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hf9-LJ-9ao" secondAttribute="bottom" id="g7v-np-h24"/>
                             <constraint firstItem="hf9-LJ-9ao" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kcX-fj-5P1"/>
+                            <constraint firstItem="cgA-WS-xZY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pSb-TB-hI3"/>
                         </constraints>
                     </view>
                 </viewController>

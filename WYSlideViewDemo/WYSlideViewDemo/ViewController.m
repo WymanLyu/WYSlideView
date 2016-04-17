@@ -27,7 +27,7 @@
 
     // 创建contentView
     UIView *contentView = [[UIView alloc] init];
-    contentView.frame = CGRectMake(0, 128, [UIScreen mainScreen].bounds.size.width, 400);
+    contentView.frame = CGRectMake(0, 84, [UIScreen mainScreen].bounds.size.width, 330);
     [contentView setBackgroundColor:[UIColor purpleColor]];
     self.contentView = contentView;
     [self.view addSubview:contentView];
@@ -35,7 +35,8 @@
     self.arrM = arrM;
     for (int i = 0; i < 10; i++) {
         UIView *view = [[UIView alloc] init];
-        [view setFrame:contentView.bounds];
+        [view setFrame:self.contentView.bounds];
+//        view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
         [view setBackgroundColor:[UIColor colorWithRed:(arc4random()%255 * 1.0f)/255.0 green:(arc4random()%255 * 1.0f)/255.0 blue:(arc4random()%255 * 1.0f)/255.0 alpha:1.0]];
         [self.arrM addObject:view];
     }
@@ -50,11 +51,12 @@
         /**** 这里传入模型索引 可以在此转场 ***/
         NSLog(@"from:%zd--to:%zd", fromIndex, toIndex);
         
-        // 例如：];
+        // 例如：
         UIView *toView = self.arrM[toIndex];
         // 右滑出现则先挪至右边，左滑出现则挪至左边
         CGRect frame =  toView.frame;
         frame.origin.x = toIndex > fromIndex ? frame.size.width : - frame.size.width;
+//        frame.size.height += 64;
         toView.frame = frame;
         [self.contentView addSubview:toView];
          NSLog(@"-==%@", self.contentView.subviews);
@@ -78,7 +80,7 @@
     }];
     
     // 设置frame
-    [slideView setFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 64)];
+    [slideView setFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 64)];
     [slideView setBackgroundColor:[UIColor greenColor]];
     self.slideView = slideView;
     [self.view addSubview:slideView];
