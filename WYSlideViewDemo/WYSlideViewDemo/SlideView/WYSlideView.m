@@ -40,7 +40,7 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
 @property (nonatomic, weak) UIButton *selectedBtn;
 
 /** 选中回调block */
-@property (nonatomic, copy) void (^block)(NSInteger);
+@property (nonatomic, copy) void (^block)(NSInteger, NSInteger);
 
 /** 底部滑动条 */
 @property (nonatomic, weak) UIView *buttomView;
@@ -59,7 +59,7 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
 
 #pragma mark - 初始化方法
 /** 类方法 */
-+ (instancetype)slideViewWithTitleArray:(NSArray<NSString *> *)titleArray itemClickBlock:(void (^)(NSInteger index))block {
++ (instancetype)slideViewWithTitleArray:(NSArray<NSString *> *)titleArray itemClickBlock:(void (^)(NSInteger fromIndex, NSInteger toIndex))block {
     // 创建模型
     NSMutableArray *itemTempArrM = [NSMutableArray array];
     for (NSString *title in titleArray) {
@@ -72,7 +72,7 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
     return [self slideViewWithItemArray:itemTempArrM itemClickBlock:block];
 }
 
-+ (instancetype)slideViewWithItemArray:(NSArray<WYSlideViewItem *> *)itemArray itemClickBlock:(void (^)(NSInteger index))block {
++ (instancetype)slideViewWithItemArray:(NSArray<WYSlideViewItem *> *)itemArray itemClickBlock:(void (^)(NSInteger fromIndex, NSInteger toIndex))block {
     // 创建view
     WYSlideView *slideView = [[self alloc] init];
     slideView.block = block;
@@ -280,6 +280,7 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
 - (void)btnClick:(UIButton *)button {
     
     // 1.回复选中
+    NSInteger from = self.selectedBtn.tag;
     self.selectedBtn.transform = CGAffineTransformIdentity;
     self.selectedBtn.selected = NO;
     
@@ -325,7 +326,7 @@ static CGFloat getArrayMaxObject(NSArray<NSNumber *> *array);
     }
     
     // 5.调用block
-    self.block(button.tag);
+    self.block(from, button.tag);
     
 }
 @end

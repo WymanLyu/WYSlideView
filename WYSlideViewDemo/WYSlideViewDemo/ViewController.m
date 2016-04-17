@@ -28,9 +28,9 @@
     // 创建view
     NSArray *strArr = @[@"第一页紫色", @"第二页绿色wy", @"第三页橘色wywy", @"这是第四页黑色wywywy", @"这是第五页红色", @"wy", @"wywy", @"sss"];
     
-    WYSlideView *slideView = [WYSlideView slideViewWithTitleArray:strArr itemClickBlock:^(NSInteger index) {
+    WYSlideView *slideView = [WYSlideView slideViewWithTitleArray:strArr itemClickBlock:^(NSInteger fromIndex, NSInteger toIndex) {
         /**** 这里传入模型索引 可以在此转场 ***/
-        NSLog(@"%zd", index);
+        NSLog(@"from:%zd--to:%zd", fromIndex, toIndex);
     }];
     
     // 设置frame
