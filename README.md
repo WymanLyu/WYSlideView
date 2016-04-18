@@ -2,13 +2,17 @@
 一个轻量级的滑动选项条
 
 ### 展示
+
 * 可以自适应内容尺寸也可以等分
+
 ![](https://github.com/WymanLyu/WYSlideView/blob/master/Images/%E8%87%AA%E9%80%82%E5%BA%94.gif)
 
 * 可以设置是否滚动
+
 ![]( https://github.com/WymanLyu/WYSlideView/blob/master/Images/%E6%BB%9A%E5%8A%A8.gif)
 
 * 还有一些杂七杂八的属性
+
 ![](https://github.com/WymanLyu/WYSlideView/blob/master/Images/%E5%B1%9E%E6%80%A7.gif)
 
 ### 使用
