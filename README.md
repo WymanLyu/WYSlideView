@@ -1,6 +1,16 @@
 # WYSlideView
 一个轻量级的滑动选项条
 
+### 展示
+* 可以自适应内容尺寸也可以等分
+![](https://github.com/WymanLyu/WYSlideView/blob/master/Images/%E8%87%AA%E9%80%82%E5%BA%94.gif)
+
+* 可以设置是否滚动
+![]( https://github.com/WymanLyu/WYSlideView/blob/master/Images/%E6%BB%9A%E5%8A%A8.gif)
+
+* 还有一些杂七杂八的属性
+![](https://github.com/WymanLyu/WYSlideView/blob/master/Images/%E5%B1%9E%E6%80%A7.gif)
+
 ### 使用
 *注意：如果添加在navigationViewController的view上请设置automaticallyAdjustsScrollViewInsets = NO 因为控制器会对scrollView添加内边距*
 * 根据字符串数组
